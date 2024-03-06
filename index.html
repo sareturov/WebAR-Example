@@ -1,0 +1,456 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title></title>
+  <meta name="Generator" content="Cocoa HTML Writer">
+  <meta name="CocoaVersion" content="2487.4">
+  <style type="text/css">
+    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Times; -webkit-text-stroke: #000000}
+    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Times; -webkit-text-stroke: #000000; min-height: 14.0px}
+    span.s1 {font-kerning: none}
+  </style>
+</head>
+<body>
+<p class="p1"><span class="s1">&lt;!DOCTYPE html&gt;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1">&lt;head&gt;</span></p>
+<p class="p1"><span class="s1">&lt;meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"&gt;</span></p>
+<p class="p1"><span class="s1">&lt;title&gt;AR project template&lt;/title&gt;</span></p>
+<p class="p1"><span class="s1">&lt;!-- Додаємо необхідні бібліотеки --&gt;</span></p>
+<p class="p1"><span class="s1">&lt;script src="js/three.js"&gt;&lt;/script&gt;</span></p>
+<p class="p1"><span class="s1">&lt;script src="js/tween.umd.js"&gt;&lt;/script&gt;</span></p>
+<p class="p1"><span class="s1">&lt;script src='loaders/GLTFLoader.js'&gt;&lt;/script&gt;</span></p>
+<p class="p1"><span class="s1">&lt;script src='loaders/GLTF2Loader.js'&gt;&lt;/script&gt;</span></p>
+<p class="p1"><span class="s1">&lt;script src='loaders/MTLLoader.js'&gt;&lt;/script&gt;</span></p>
+<p class="p1"><span class="s1">&lt;script src='loaders/OBJLoader.js'&gt;&lt;/script&gt;</span></p>
+<p class="p1"><span class="s1">&lt;!-- Додаємо jsartookit --&gt;</span></p>
+<p class="p1"><span class="s1">&lt;script src="jsartoolkit5/artoolkit.min.js"&gt;&lt;/script&gt;</span></p>
+<p class="p1"><span class="s1">&lt;script src="jsartoolkit5/artoolkit.api.js"&gt;&lt;/script&gt;</span></p>
+<p class="p1"><span class="s1">&lt;!-- Додаємо threex.artoolkit --&gt;</span></p>
+<p class="p1"><span class="s1">&lt;script src="threex/threex-artoolkitsource.js"&gt;&lt;/script&gt;</span></p>
+<p class="p1"><span class="s1">&lt;script src="threex/threex-artoolkitcontext.js"&gt;&lt;/script&gt;</span></p>
+<p class="p1"><span class="s1">&lt;script src="threex/threex-arbasecontrols.js"&gt;&lt;/script&gt;</span></p>
+<p class="p1"><span class="s1">&lt;script src="threex/threex-armarkercontrols.js"&gt;&lt;/script&gt;</span></p>
+<p class="p1"><span class="s1">&lt;/head&gt;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1">&lt;body style='margin : 0px; overflow: hidden; font-family: Monospace; user-select: none; pointer-events: none;'&gt;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1">&lt;div id="access" style="top: 0; left: 0; right:0; bottom: 0; background: #000; position: absolute; user-select: all; pointer-events: all;"&gt;</span></p>
+<p class="p1"><span class="s1">&lt;div id="text-wrapper" style="top: 50%; left: 50%; position: absolute; color: #fff; transform: translate(-50%, -50%); text-align: center;</span></p>
+<p class="p1"><span class="s1">text-transform: uppercase; font-family: Arial, Helvetica, sans-serif; font-weight: 400; line-height: 1.5em; font-size: large; white-space: nowrap;</span></p>
+<p class="p1"><span class="s1">user-select: none; pointer-events: none;</span></p>
+<p class="p1"><span class="s1">"&gt;</span></p>
+<p class="p1"><span class="s1">Press here</span></p>
+<p class="p1"><span class="s1">&lt;br&gt;</span></p>
+<p class="p1"><span class="s1">to enter the experience</span></p>
+<p class="p1"><span class="s1">&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1">&lt;/div&gt;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1">&lt;div id="loader" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: #fff; pointer-events: none; user-select: none;</span></p>
+<p class="p1"><span class="s1">transition: all .2s linear; display: none;"&gt;</span></p>
+<p class="p1"><span class="s1">&lt;div style="left: 50%; top: 50%; position: absolute; transform: translate(-50%, -50%); text-align: center; width: 130px; height: 165px;</span></p>
+<p class="p1"><span class="s1">font-family: Arial, Helvetica, sans-serif; font-weight: 400; line-height: 1.5em; font-size: large;" class="spinner-wrapper"&gt;</span></p>
+<p class="p1"><span class="s1">&lt;img style="width: 130px; height: 130px; pointer-events: none; user-select: none;" src="data/spin.gif" alt="spin gif"&gt;</span></p>
+<p class="p1"><span class="s1">&lt;br&gt;</span></p>
+<p class="p1"><span class="s1">Loading...</span></p>
+<p class="p1"><span class="s1">&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1">&lt;/div&gt;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1">&lt;script&gt;</span></p>
+<p class="p1"><span class="s1">const access = document.getElementById('access');</span></p>
+<p class="p1"><span class="s1">const loader = document.getElementById('loader');</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1">function initiateExperience() {</span></p>
+<p class="p1"><span class="s1">// Оголошуємо глобальні змінні</span></p>
+<p class="p1"><span class="s1">var scene, camera, renderer, clock, deltaTime, totalTime;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1">var patternIdOffset = 10000000000</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1">// Змінні необхідні для роботи AR оточення</span></p>
+<p class="p1"><span class="s1">var arToolkitSource, arToolkitContext;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1">// Головний контейнер, до якого увійдуть всі 3D об'єкти для програми</span></p>
+<p class="p1"><span class="s1">var markerRoot, mainContainer;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1">// Окремий масив для зберігання всього аудіо та відео контенту, який буде</span></p>
+<p class="p1"><span class="s1">// запущений натисканням на екран смартфона</span></p>
+<p class="p1"><span class="s1">var audioContent = [];</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1">var contentPromises = [];</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1">let contentInitialized = false;</span></p>
+<p class="p1"><span class="s1">let barcodesSound = new Map();</span></p>
+<p class="p1"><span class="s1">let patternsSound = new Map();</span></p>
+<p class="p1"><span class="s1">let barcodesID = [];</span></p>
+<p class="p1"><span class="s1">let patternsID = [];</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1">let controller;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1">// Ініціалізуємо сцену та запускаємо цикл анімації</span></p>
+<p class="p1"><span class="s1">initialize();</span></p>
+<p class="p1"><span class="s1">animate();</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1">function initialize() {</span></p>
+<p class="p1"><span class="s1">// Оголошуємо сцену, в яку додамо головний контейнер з усіма 3D об'єктами.</span></p>
+<p class="p1"><span class="s1">scene = new THREE.Scene();</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1">// Додаємо світло на сцену, інакше базові матеріали будуть просто чорними.</span></p>
+<p class="p1"><span class="s1">// т.к. їм нема чого відображати, зверніться до документації бібліотеки three.js, щоб</span></p>
+<p class="p1"><span class="s1">// прочитати про докладну роботу класу Material</span></p>
+<p class="p1"><span class="s1">let ambientLight = new THREE.AmbientLight(0xffffff, 0.75);</span></p>
+<p class="p1"><span class="s1">scene.add(ambientLight);</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1">// Додаємо камеру, яка буде пізніше перепризначена на камеру смартфона</span></p>
+<p class="p1"><span class="s1">camera = new THREE.Camera();</span></p>
+<p class="p1"><span class="s1">scene.add(camera);</span></p>
+<p class="p1"><span class="s1">const listener = new THREE.AudioListener();</span></p>
+<p class="p1"><span class="s1">camera.add(listener);</span></p>
+<p class="p1"><span class="s1">const audioLoader = new THREE.AudioLoader();</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1">// Оголошуємо стандартний рендерер і додаємо його до тега body html документа</span></p>
+<p class="p1"><span class="s1">renderer = new THREE.WebGLRenderer({</span></p>
+<p class="p1"><span class="s1">antialias: true,</span></p>
+<p class="p1"><span class="s1">alpha: true</span></p>
+<p class="p1"><span class="s1">});</span></p>
+<p class="p1"><span class="s1">renderer.setClearColor(new THREE.Color('lightgrey'), 0)</span></p>
+<p class="p1"><span class="s1">renderer.setSize(640, 480);</span></p>
+<p class="p1"><span class="s1">renderer.domElement.style.position = 'absolute'</span></p>
+<p class="p1"><span class="s1">renderer.domElement.style.top = '0px'</span></p>
+<p class="p1"><span class="s1">renderer.domElement.style.left = '0px'</span></p>
+<p class="p1"><span class="s1">document.body.appendChild(renderer.domElement);</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1">clock = new THREE.Clock();</span></p>
+<p class="p1"><span class="s1">deltaTime = 0;</span></p>
+<p class="p1"><span class="s1">totalTime = 0;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1">arToolkitSource = new THREEx.ArToolkitSource({</span></p>
+<p class="p1"><span class="s1">sourceType: 'webcam',</span></p>
+<p class="p1"><span class="s1">});</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1">// Функція перерендерує AR сцену під поточний розмір canvas</span></p>
+<p class="p1"><span class="s1">function onResize() {</span></p>
+<p class="p1"><span class="s1">arToolkitSource.onResize()</span></p>
+<p class="p1"><span class="s1">arToolkitSource.copySizeTo(renderer.domElement)</span></p>
+<p class="p1"><span class="s1">if (arToolkitContext.arController !== null) {</span></p>
+<p class="p1"><span class="s1">arToolkitSource.copySizeTo(arToolkitContext.arController.canvas)</span></p>
+<p class="p1"><span class="s1">}</span></p>
+<p class="p1"><span class="s1">}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1">// Викликаємо функцію під час ініціалізації AR</span></p>
+<p class="p1"><span class="s1">arToolkitSource.init(function onReady() {</span></p>
+<p class="p1"><span class="s1">onResize()</span></p>
+<p class="p1"><span class="s1">});</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1">// Викликаємо функцію на resize івент веб-сторінки</span></p>
+<p class="p1"><span class="s1">window.addEventListener('resize', function () {</span></p>
+<p class="p1"><span class="s1">onResize()</span></p>
+<p class="p1"><span class="s1">});</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1">// Ініціалізуємо AR контекст під камеру, патерни, баркод 3х3</span></p>
+<p class="p1"><span class="s1">arToolkitContext = new THREEx.ArToolkitContext({</span></p>
+<p class="p1"><span class="s1">cameraParametersUrl: 'data/camera_para.dat',</span></p>
+<p class="p1"><span class="s1">detectionMode: 'mono_and_matrix',</span></p>
+<p class="p1"><span class="s1">matrixCodeType: "3x3",</span></p>
+<p class="p1"><span class="s1">maxDetectionRate: 60,</span></p>
+<p class="p1"><span class="s1">canvasWidth: 640,</span></p>
+<p class="p1"><span class="s1">canvasHeight: 480</span></p>
+<p class="p1"><span class="s1">});</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1">// Відновлюємо матрицю проекції камери після закінчення ініціалізації</span></p>
+<p class="p1"><span class="s1">arToolkitContext.init(function onCompleted() {</span></p>
+<p class="p1"><span class="s1">camera.projectionMatrix.copy(arToolkitContext.getProjectionMatrix());</span></p>
+<p class="p1"><span class="s1">});</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1">// Створюємо головну групу для всіх 3D об'єктів</span></p>
+<p class="p1"><span class="s1">mainContainer = new THREE.Group();</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1">// Масив назв файлів .patt. Масив заповнюється в порядку додавання маркерів</span></p>
+<p class="p1"><span class="s1">// якщо замість .patt було додано баркод, на його місце в масив додається порожній рядок</span></p>
+<p class="p1"><span class="s1">const patternNames = ["" ,"" ,""];</span></p>
+<p class="p1"><span class="s1">// Масив баркодів, заповнюється одночасно з масивом патернів</span></p>
+<p class="p1"><span class="s1">// якщо замість баркоду був доданий .patt, на його місце масив додається -1</span></p>
+<p class="p1"><span class="s1">const patternBarcode = [1 ,2 ,3];</span></p>
+<p class="p1"><span class="s1">// Масив типів контенту кожного маркера, заповнюється значеннями: зображення, модель, відео</span></p>
+<p class="p1"><span class="s1">const modes = ["image" ,"image" ,"image"];</span></p>
+<p class="p1"><span class="s1">// Масив файлів моделей, якщо немає моделі буде додано порожній рядок</span></p>
+<p class="p1"><span class="s1">const modelFiles = ["" ,"" ,""];</span></p>
+<p class="p1"><span class="s1">// Масив файлів зображень, якщо немає зображення буде додано також порожній рядок</span></p>
+<p class="p1"><span class="s1">const imageFiles = ["Name_and_group.jpg" ,"Вильям.jpg" ,"oughtred.jpg"];</span></p>
+<p class="p1"><span class="s1">// Масив файлів відео, якщо немає відео буде ще один порожній рядок</span></p>
+<p class="p1"><span class="s1">const videoFiles = ["" ,"" ,""];</span></p>
+<p class="p1"><span class="s1">// Масив файлів аудіо, якщо немає аудіо буде так само порожній рядок</span></p>
+<p class="p1"><span class="s1">const audioFiles = ["Ковальов Артем АІ 23.mp3" ,"Вільям Отред народив.mp3" ,"Кругову логарифмічну.mp3"];</span></p>
+<p class="p1"><span class="s1">// Масив опцій повтору аудіо та відео контенту, по дефолту для всіх буде false</span></p>
+<p class="p1"><span class="s1">const repeatOptions = ["false" ,"false" ,"false"];</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1">// Створюємо масив для всіх маркерів</span></p>
+<p class="p1"><span class="s1">const markerRoots = [];</span></p>
+<p class="p1"><span class="s1">for (let i = 0; i &lt; 3; i++) {</span></p>
+<p class="p1"><span class="s1">markerRoots[i] = new THREE.Group();</span></p>
+<p class="p1"><span class="s1">}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1">// Проходимо по кожному маркеру з масиву і додаємо його в головний контейнер</span></p>
+<p class="p1"><span class="s1">for (let i = 0; i &lt; 3; i++) {</span></p>
+<p class="p1"><span class="s1">mainContainer.add(markerRoots[i]);</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1">// Якщо поточний маркер – це баркод, створюємо AR контролер під баркод</span></p>
+<p class="p1"><span class="s1">// якщо поточний маркер це патерн, аналогічно створюємо AR контролер під патерн</span></p>
+<p class="p1"><span class="s1">if (patternBarcode[i] === -1) {</span></p>
+<p class="p1"><span class="s1">let markerControls1 = new THREEx.ArMarkerControls(arToolkitContext, markerRoots[i], {</span></p>
+<p class="p1"><span class="s1">type: 'pattern', patternUrl: patternNames[i], size: 1 + (i + 1) / patternIdOffset</span></p>
+<p class="p1"><span class="s1">})</span></p>
+<p class="p1"><span class="s1">patternsID.push(patternNames[i]);</span></p>
+<p class="p1"><span class="s1">} else {</span></p>
+<p class="p1"><span class="s1">let markerControls1 = new THREEx.ArMarkerControls(arToolkitContext, markerRoots[i], {</span></p>
+<p class="p1"><span class="s1">type: "barcode", barcodeValue: patternBarcode[i],</span></p>
+<p class="p1"><span class="s1">})</span></p>
+<p class="p1"><span class="s1">barcodesID.push(patternBarcode[i]);</span></p>
+<p class="p1"><span class="s1">}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1">// Використовуємо switch для роботи з кожним окремим випадком контенту</span></p>
+<p class="p1"><span class="s1">switch (modes[i]) {</span></p>
+<p class="p1"><span class="s1">// Якщо контент під маркер це модель</span></p>
+<p class="p1"><span class="s1">case 'model':</span></p>
+<p class="p1"><span class="s1">function onProgress(xhr) { console.log((xhr.loaded / xhr.total * 100) + '% loaded'); }</span></p>
+<p class="p1"><span class="s1">function onError(xhr) { console.log('An error happened'); }</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1">contentPromises.push(new Promise((resolve) =&gt; {</span></p>
+<p class="p1"><span class="s1">const test = new THREE.GLTF2Loader().load(`${modelFiles[i]}`, (response) =&gt; {</span></p>
+<p class="p1"><span class="s1">const scene = response.scene;</span></p>
+<p class="p1"><span class="s1">const object = scene.children[0];</span></p>
+<p class="p1"><span class="s1">// Іноді модель не можна побачити з кількох причин, найчастіше варто збільшити чи зменшити у 100 разів.</span></p>
+<p class="p1"><span class="s1">// Читайте: https://threejs.org/docs/index.html#manual/en/introduction/Loading-3D-models</span></p>
+<p class="p1"><span class="s1">// Тут ми зменшуємо її, щоб точно побачити її на сцені. Ви можете видалити цю шкалу, якщо потрібно</span></p>
+<p class="p1"><span class="s1">object.scale.set(0.01, 0.01, 0.01);</span></p>
+<p class="p1"><span class="s1">// Ви можете самостійно змінити поворот або позицію моделі</span></p>
+<p class="p1"><span class="s1">// object.position.set(0, Math.PI / 2, Math.PI / 4);</span></p>
+<p class="p1"><span class="s1">// object.rotation.set(0, Math.PI / 2, Math.PI / 4);</span></p>
+<p class="p1"><span class="s1">// Додавання нашої моделі до контейнера групи маркерів</span></p>
+<p class="p1"><span class="s1">markerRoots[i].add(object);</span></p>
+<p class="p1"><span class="s1">resolve(modelFiles[i])</span></p>
+<p class="p1"><span class="s1">}, onProgress, onError)</span></p>
+<p class="p1"><span class="s1">}).then((file) =&gt; {</span></p>
+<p class="p1"><span class="s1">console.log(`File ${file} loaded`)</span></p>
+<p class="p1"><span class="s1">}))</span></p>
+<p class="p1"><span class="s1">break;</span></p>
+<p class="p1"><span class="s1">// Якщо контент під маркер це зображення</span></p>
+<p class="p1"><span class="s1">case 'image':</span></p>
+<p class="p1"><span class="s1">if (imageFiles[i]) {</span></p>
+<p class="p1"><span class="s1">contentPromises.push(new Promise((resolve) =&gt; {</span></p>
+<p class="p1"><span class="s1">// Завантажуємо зображення</span></p>
+<p class="p1"><span class="s1">let loader = new THREE.TextureLoader();</span></p>
+<p class="p1"><span class="s1">loader.load(`${imageFiles[i]}`, (texture) =&gt; {</span></p>
+<p class="p1"><span class="s1">let geometry1, ratio = texture.image.naturalWidth / texture.image.naturalHeight;</span></p>
+<p class="p1"><span class="s1">if (texture.image.naturalHeight &lt; texture.image.naturalWidth) {</span></p>
+<p class="p1"><span class="s1">geometry1 = new THREE.PlaneBufferGeometry(ratio, 1);</span></p>
+<p class="p1"><span class="s1">} else {</span></p>
+<p class="p1"><span class="s1">geometry1 = new THREE.PlaneBufferGeometry(1, 1 / ratio);</span></p>
+<p class="p1"><span class="s1">}</span></p>
+<p class="p1"><span class="s1">let material1 = new THREE.MeshBasicMaterial({ map: texture, side: THREE.DoubleSide });</span></p>
+<p class="p1"><span class="s1">mesh1 = new THREE.Mesh(geometry1, material1);</span></p>
+<p class="p1"><span class="s1">// Повертаємо площину</span></p>
+<p class="p1"><span class="s1">mesh1.rotation.x = -Math.PI / 2;</span></p>
+<p class="p1"><span class="s1">// Додаємо площину у контейнер</span></p>
+<p class="p1"><span class="s1">markerRoots[i].add(mesh1);</span></p>
+<p class="p1"><span class="s1">resolve(imageFiles[i])</span></p>
+<p class="p1"><span class="s1">});</span></p>
+<p class="p1"><span class="s1">}).then(image =&gt; {</span></p>
+<p class="p1"><span class="s1">console.log(`File ${image} loaded`)</span></p>
+<p class="p1"><span class="s1">}))</span></p>
+<p class="p1"><span class="s1">}</span></p>
+<p class="p1"><span class="s1">break;</span></p>
+<p class="p1"><span class="s1">// Якщо контент під маркер - це відео</span></p>
+<p class="p1"><span class="s1">case 'video':</span></p>
+<p class="p1"><span class="s1">// Оголошуємо площину під відео</span></p>
+<p class="p1"><span class="s1">let geometry2 = new THREE.PlaneBufferGeometry(1.6 , 0.9);</span></p>
+<p class="p1"><span class="s1">// Оголошуємо та завантажуємо відео</span></p>
+<p class="p1"><span class="s1">let video = document.createElement('video');</span></p>
+<p class="p1"><span class="s1">video.src = `${videoFiles[i]}`;</span></p>
+<p class="p1"><span class="s1">video.playsInline = true;</span></p>
+<p class="p1"><span class="s1">// Встановлюємо відео на автоповтор залежно від значення у масиві</span></p>
+<p class="p1"><span class="s1">if (repeatOptions[i]) {</span></p>
+<p class="p1"><span class="s1">video.addEventListener('ended', () =&gt; {</span></p>
+<p class="p1"><span class="s1">video.play();</span></p>
+<p class="p1"><span class="s1">})</span></p>
+<p class="p1"><span class="s1">}</span></p>
+<p class="p1"><span class="s1">// Додаємо відео до масиву аудіо контенту</span></p>
+<p class="p1"><span class="s1">if (patternBarcode[i] === -1) {</span></p>
+<p class="p1"><span class="s1">patternsSound.set(i, video);</span></p>
+<p class="p1"><span class="s1">} else {</span></p>
+<p class="p1"><span class="s1">barcodesSound.set(patternBarcode[i], video);</span></p>
+<p class="p1"><span class="s1">}</span></p>
+<p class="p1"><span class="s1">// Перенаправляємо текстуру з відео на матеріал для площини.</span></p>
+<p class="p1"><span class="s1">let texture2 = new THREE.VideoTexture(video);</span></p>
+<p class="p1"><span class="s1">texture2.minFilter = THREE.LinearFilter;</span></p>
+<p class="p1"><span class="s1">texture2.magFilter = THREE.LinearFilter;</span></p>
+<p class="p1"><span class="s1">texture2.format = THREE.RGBFormat;</span></p>
+<p class="p1"><span class="s1">let material2 = new THREE.MeshBasicMaterial({ map: texture2 });</span></p>
+<p class="p1"><span class="s1">mesh2 = new THREE.Mesh(geometry2, material2);</span></p>
+<p class="p1"><span class="s1">// Повертаємо площину</span></p>
+<p class="p1"><span class="s1">mesh2.rotation.x = -Math.PI / 2;</span></p>
+<p class="p1"><span class="s1">// Додаємо площину у контейнер</span></p>
+<p class="p1"><span class="s1">markerRoots[i].add(mesh2);</span></p>
+<p class="p1"><span class="s1">break;</span></p>
+<p class="p1"><span class="s1">case 'controller':</span></p>
+<p class="p1"><span class="s1">controller = new THREE.Mesh(</span></p>
+<p class="p1"><span class="s1">new THREE.CubeGeometry(10, 0.15, 0.15),</span></p>
+<p class="p1"><span class="s1">new THREE.MeshBasicMaterial({ color: 'green' })</span></p>
+<p class="p1"><span class="s1">);</span></p>
+<p class="p1"><span class="s1">controller.rotation.y = Math.PI / 2;</span></p>
+<p class="p1"><span class="s1">controller.position.y = 0.125;</span></p>
+<p class="p1"><span class="s1">controller.position.z = -4.5;</span></p>
+<p class="p1"><span class="s1">markerRoots[i].add(controller);</span></p>
+<p class="p1"><span class="s1">break;</span></p>
+<p class="p1"><span class="s1">default:</span></p>
+<p class="p1"><span class="s1">// Якщо жодного контенту не додано, додаємо білу площину.</span></p>
+<p class="p1"><span class="s1">mesh11 = new THREE.Mesh(new THREE.PlaneBufferGeometry(1, 1),</span></p>
+<p class="p1"><span class="s1">new THREE.MeshBasicMaterial({ color: '#fff' }));</span></p>
+<p class="p1"><span class="s1">// Повертаємо площину</span></p>
+<p class="p1"><span class="s1">mesh11.rotation.x = -Math.PI / 2;</span></p>
+<p class="p1"><span class="s1">// Додаємо площину у контейнер</span></p>
+<p class="p1"><span class="s1">markerRoots[i].add(mesh11);</span></p>
+<p class="p1"><span class="s1">break;</span></p>
+<p class="p1"><span class="s1">}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1">// Якщо є аудіо файли, налаштовуємо їх і додаємо в масив аудіо контенту.</span></p>
+<p class="p1"><span class="s1">if (audioFiles[i]) {</span></p>
+<p class="p1"><span class="s1">contentPromises.push(new Promise((resolve, reject) =&gt; {</span></p>
+<p class="p1"><span class="s1">audioLoader.load(`${audioFiles[i]}`, function (buffer) {</span></p>
+<p class="p1"><span class="s1">// Створюємо аудіо джерело</span></p>
+<p class="p1"><span class="s1">let sound = new THREE.Audio(listener);</span></p>
+<p class="p1"><span class="s1">sound.name = `${audioFiles[i]}`;</span></p>
+<p class="p1"><span class="s1">sound.setBuffer(buffer);</span></p>
+<p class="p1"><span class="s1">// Встановлюємо відео на автоповтор залежно від значення у масиві</span></p>
+<p class="p1"><span class="s1">if (repeatOptions[i]) {</span></p>
+<p class="p1"><span class="s1">sound.setLoop(true);</span></p>
+<p class="p1"><span class="s1">}</span></p>
+<p class="p1"><span class="s1">if (patternBarcode[i] === -1) {</span></p>
+<p class="p1"><span class="s1">patternsSound.set(i, sound);</span></p>
+<p class="p1"><span class="s1">} else {</span></p>
+<p class="p1"><span class="s1">barcodesSound.set(patternBarcode[i], sound);</span></p>
+<p class="p1"><span class="s1">}</span></p>
+<p class="p1"><span class="s1">resolve(sound)</span></p>
+<p class="p1"><span class="s1">});</span></p>
+<p class="p1"><span class="s1">}).then((sound) =&gt; {</span></p>
+<p class="p1"><span class="s1">sound.play()</span></p>
+<p class="p1"><span class="s1">sound.stop()</span></p>
+<p class="p1"><span class="s1">console.log(`File ${sound.name} loaded`)</span></p>
+<p class="p1"><span class="s1">}))</span></p>
+<p class="p1"><span class="s1">}</span></p>
+<p class="p1"><span class="s1">}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1">// Ховаємо лоадер після завантаження компонентів</span></p>
+<p class="p1"><span class="s1">Promise.all(contentPromises)</span></p>
+<p class="p1"><span class="s1">.then(() =&gt; {</span></p>
+<p class="p1"><span class="s1">console.log('Most of the content loaded')</span></p>
+<p class="p1"><span class="s1">contentInitialized = true;</span></p>
+<p class="p1"><span class="s1">loader.style.opacity = '0';</span></p>
+<p class="p1"><span class="s1">});</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1">// Додаємо головний контейнер на сцену</span></p>
+<p class="p1"><span class="s1">scene.add(mainContainer);</span></p>
+<p class="p1"><span class="s1">}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1">function checkController() {</span></p>
+<p class="p1"><span class="s1">if (controller) {</span></p>
+<p class="p1"><span class="s1">mainContainer.traverse((object) =&gt; {</span></p>
+<p class="p1"><span class="s1">if (object.isMesh &amp;&amp; object !== controller) {</span></p>
+<p class="p1"><span class="s1">if (detectCollisionCubes(object, controller)) {</span></p>
+<p class="p1"><span class="s1">object.material.color.set('red')</span></p>
+<p class="p1"><span class="s1">} else {</span></p>
+<p class="p1"><span class="s1">object.material.color.set('white')</span></p>
+<p class="p1"><span class="s1">}</span></p>
+<p class="p1"><span class="s1">}</span></p>
+<p class="p1"><span class="s1">});</span></p>
+<p class="p1"><span class="s1">}</span></p>
+<p class="p1"><span class="s1">}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1">// Функція пошуку перетинів між двома об'єктами сцени</span></p>
+<p class="p1"><span class="s1">function detectCollisionCubes(object1, object2) {</span></p>
+<p class="p1"><span class="s1">object1.geometry.computeBoundingBox();</span></p>
+<p class="p1"><span class="s1">object2.geometry.computeBoundingBox();</span></p>
+<p class="p1"><span class="s1">object1.updateMatrixWorld();</span></p>
+<p class="p1"><span class="s1">object2.updateMatrixWorld();</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1">const box1 = object1.geometry.boundingBox.clone();</span></p>
+<p class="p1"><span class="s1">box1.applyMatrix4(object1.matrixWorld);</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1">const box2 = object2.geometry.boundingBox.clone();</span></p>
+<p class="p1"><span class="s1">box2.applyMatrix4(object2.matrixWorld);</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1">return box1.intersectsBox(box2);</span></p>
+<p class="p1"><span class="s1">};</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1">// Оновлюємо AR контент на кожен кадр</span></p>
+<p class="p1"><span class="s1">function update() {</span></p>
+<p class="p1"><span class="s1">if (arToolkitSource.ready !== false) {</span></p>
+<p class="p1"><span class="s1">arToolkitContext.update(arToolkitSource.domElement);</span></p>
+<p class="p1"><span class="s1">if (contentInitialized) {</span></p>
+<p class="p1"><span class="s1">if (barcodesID.length) {</span></p>
+<p class="p1"><span class="s1">barcodesID.forEach((elem, index) =&gt; {</span></p>
+<p class="p1"><span class="s1">if (arToolkitContext.arController.barcodeMarkers[elem].inCurrent) {</span></p>
+<p class="p1"><span class="s1">let sound = barcodesSound.get(elem);</span></p>
+<p class="p1"><span class="s1">if (sound &amp;&amp; !sound.isPlaying) sound.play();</span></p>
+<p class="p1"><span class="s1">} else {</span></p>
+<p class="p1"><span class="s1">let sound = barcodesSound.get(elem);</span></p>
+<p class="p1"><span class="s1">if (sound &amp;&amp; sound.nodeName === 'VIDEO') {</span></p>
+<p class="p1"><span class="s1">if (!sound.paused) sound.pause()</span></p>
+<p class="p1"><span class="s1">}</span></p>
+<p class="p1"><span class="s1">if (sound &amp;&amp; sound.isPlaying) sound.stop();</span></p>
+<p class="p1"><span class="s1">}</span></p>
+<p class="p1"><span class="s1">})</span></p>
+<p class="p1"><span class="s1">}</span></p>
+<p class="p1"><span class="s1">if (patternsID.length) {</span></p>
+<p class="p1"><span class="s1">for (let index = 0; index &lt; patternsID.length; index++) {</span></p>
+<p class="p1"><span class="s1">if (arToolkitContext.arController.patternMarkers[index].inCurrent) {</span></p>
+<p class="p1"><span class="s1">let patternID = (arToolkitContext.arController.patternMarkers[index].markerWidth - 1) * patternIdOffset - 1;</span></p>
+<p class="p1"><span class="s1">patternID = Math.round(patternID)</span></p>
+<p class="p1"><span class="s1">let sound = patternsSound.get(patternID);</span></p>
+<p class="p1"><span class="s1">if (sound &amp;&amp; !sound.isPlaying) sound.play();</span></p>
+<p class="p1"><span class="s1">} else {</span></p>
+<p class="p1"><span class="s1">let patternID = (arToolkitContext.arController.patternMarkers[index].markerWidth - 1) * patternIdOffset - 1;</span></p>
+<p class="p1"><span class="s1">patternID = Math.round(patternID)</span></p>
+<p class="p1"><span class="s1">let sound = patternsSound.get(patternID);</span></p>
+<p class="p1"><span class="s1">if (sound &amp;&amp; sound.nodeName === 'VIDEO') {</span></p>
+<p class="p1"><span class="s1">if (!sound.paused) sound.pause()</span></p>
+<p class="p1"><span class="s1">}</span></p>
+<p class="p1"><span class="s1">if (sound &amp;&amp; sound.isPlaying) sound.stop();</span></p>
+<p class="p1"><span class="s1">}</span></p>
+<p class="p1"><span class="s1">}</span></p>
+<p class="p1"><span class="s1">}</span></p>
+<p class="p1"><span class="s1">}</span></p>
+<p class="p1"><span class="s1">}</span></p>
+<p class="p1"><span class="s1">}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1">// Рендерім сцену на кожен кадр</span></p>
+<p class="p1"><span class="s1">function render() {</span></p>
+<p class="p1"><span class="s1">renderer.render(scene, camera);</span></p>
+<p class="p1"><span class="s1">}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1">// Запускаємо цикл анімації</span></p>
+<p class="p1"><span class="s1">function animate(time) {</span></p>
+<p class="p1"><span class="s1">// Прив'язуємо цикл анімації до рендеру браузера</span></p>
+<p class="p1"><span class="s1">requestAnimationFrame(animate);</span></p>
+<p class="p1"><span class="s1">deltaTime = clock.getDelta();</span></p>
+<p class="p1"><span class="s1">totalTime += deltaTime;</span></p>
+<p class="p1"><span class="s1">update();</span></p>
+<p class="p1"><span class="s1">checkController();</span></p>
+<p class="p1"><span class="s1">render();</span></p>
+<p class="p1"><span class="s1">}</span></p>
+<p class="p1"><span class="s1">}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1">// Прибираємо блок після натискання на екран для дозволу аудіо програвання на iOS</span></p>
+<p class="p1"><span class="s1">access.addEventListener('click', () =&gt; {</span></p>
+<p class="p1"><span class="s1">initiateExperience();</span></p>
+<p class="p1"><span class="s1">document.body.removeChild(access);</span></p>
+<p class="p1"><span class="s1">loader.style.display = 'block';</span></p>
+<p class="p1"><span class="s1">});</span></p>
+<p class="p1"><span class="s1">&lt;/script&gt;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1">&lt;/body&gt;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1">&lt;/html&gt;</span></p>
+</body>
+</html>
